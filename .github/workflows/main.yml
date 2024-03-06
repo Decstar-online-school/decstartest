@@ -1,26 +1,22 @@
-name: Firebase Deployment
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-on:
-  push:
-    branches:
-      - main
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyBjlWqFAsgd2Ph9IfeZYXzr680hWenpSPE",
+  authDomain: "decstar-assistant-bot.firebaseapp.com",
+  databaseURL: "https://decstar-assistant-bot-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "decstar-assistant-bot",
+  storageBucket: "decstar-assistant-bot.appspot.com",
+  messagingSenderId: "603750987121",
+  appId: "1:603750987121:web:ff7d0e22a81a91a929f2d0",
+  measurementId: "G-QZ3FBJQLCP"
+};
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2.7.0  # Replace with the latest version that supports Node.js 20
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4  # Replace with the latest version that supports Node.js 20
-        with:
-          node-version: '20'
-
-      # Add other steps as needed...
-
-      - name: Firebase Deploy
-        run: npm run deploy
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
