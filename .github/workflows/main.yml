@@ -18,8 +18,8 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Navigate to Tyran Alexander directory
-        run: cd "Tyran Alexander"
+      - name: Change Directory
+        run: cd Tyran\ Alexander
 
       - name: Install Dependencies
         run: npm install
