@@ -11,32 +11,14 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2.7.0  # Replace with the latest version
+        uses: actions/checkout@v2.7.0  # Replace with the latest version that supports Node.js 20
 
       - name: Set up Node.js
-        run: |
-          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-          nvm install 20.11.1
-          nvm use 20.11.1
+        uses: actions/setup-node@v5  # Replace with the latest version that supports Node.js 20
+        with:
+          node-version: '20'
 
-      - name: Print Current Directory Before CD
-        run: echo "Current directory before CD:$PWD"
-
-      - name: Navigate to Tyran Alexander directory
-        run: cd "Tyran Alexander"
-
-      - name: Print Current Directory After CD
-        run: echo "Current directory after CD:$PWD"
-
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Configure Git
-        run: |
-          git config --global user.email "you@example.com"
-          git config --global user.name "Your Name"
+      # Add other steps as needed...
 
       - name: Firebase Deploy
         run: npm run deploy
