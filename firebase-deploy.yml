@@ -1,31 +1,37 @@
-name: Preview Deploy
+name: Firebase Deployment
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
 jobs:
-  preview-deploy:
+  deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.0
         with:
           node-version: '14'
 
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools
-
-      - name: Deploy to Firebase Hosting Channel
+      - name: Print Current Directory Before CD
         run: |
-          firebase use --add $FIREBASE_PROJECT_ID
-          firebase hosting:channel:deploy $FIREBASE_CHANNEL_NAME --only hosting
+          echo "Current directory before CD: $(pwd)"
+          
+      - name: Navigate to Tyran Alexander directory
+        run: cd Tyran\ Alexander
 
-env:
-  FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-  FIREBASE_CHANNEL_NAME: ${{ github.event.number }}
+      - name: Print Current Directory After CD
+        run: |
+          echo "Current directory after CD: $(pwd)"
+          
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Firebase Deploy
+        run: npm run deploy
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
