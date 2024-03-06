@@ -25,7 +25,7 @@ jobs:
           echo "Current directory before CD: $(pwd)"
           
       - name: Navigate to Tyran Alexander directory
-        run: cd Tyran\ Alexander
+        run: cd "Tyran Alexander"
 
       - name: Print Current Directory After CD
         run: |
@@ -33,6 +33,11 @@ jobs:
           
       - name: Install Dependencies
         run: npm install
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "you@example.com"
+          git config --global user.name "Your Name"
 
       - name: Firebase Deploy
         run: npm run deploy
