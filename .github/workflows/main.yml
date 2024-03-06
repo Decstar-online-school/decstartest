@@ -11,16 +11,24 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.5.0  # Replace with the latest version
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.0  # Replace with the latest version
         with:
-          node-version: '14'
+          node-version: '20'  # Update to Node.js version 20
 
-      - name: Change Directory
+      - name: Print Current Directory
+        run: |
+          echo "Current directory before CD: $(pwd)"
+          
+      - name: Navigate to Tyran Alexander directory
         run: cd Tyran\ Alexander
 
+      - name: Print Current Directory After CD
+        run: |
+          echo "Current directory after CD: $(pwd)"
+          
       - name: Install Dependencies
         run: npm install
 
