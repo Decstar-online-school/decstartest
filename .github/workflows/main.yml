@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2.5.0  # Replace with the latest version
+        with:
+          ref: 'v2'  # This is needed to avoid an issue with Node.js 20
 
       - name: Set up Node.js
         uses: actions/setup-node@v4.0.0  # Replace with the latest version
