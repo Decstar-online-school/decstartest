@@ -3,11 +3,12 @@ name: Firebase Deployment
 on:
   push:
     branches:
-      - main  # or the branch you want to trigger deployment from
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
@@ -17,8 +18,8 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Change Directory
-        run: cd Tyran\ Alexander
+      - name: Navigate to Tyran Alexander directory
+        run: cd "Tyran Alexander"
 
       - name: Install Dependencies
         run: npm install
