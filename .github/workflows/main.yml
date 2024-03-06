@@ -21,14 +21,14 @@ jobs:
           nvm install 20.11.1
           nvm use 20.11.1
 
-      - name: Print Current Directory
-        run: echo "Current directory before CD: $(pwd)"
+      - name: Print Current Directory Before CD
+        run: echo "Current directory before CD:$PWD"
 
       - name: Navigate to Tyran Alexander directory
         run: cd "Tyran Alexander"
 
       - name: Print Current Directory After CD
-        run: echo "Current directory after CD: $(pwd)"
+        run: echo "Current directory after CD:$PWD"
 
       - name: Install Dependencies
         run: npm install
