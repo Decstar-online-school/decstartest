@@ -14,14 +14,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4.0.0
         with:
-          node-version: '20'
+          node-version: '14'
+
+      - name: Navigate to Tyran Alexander directory
+        run: cd Tyran Alexander
 
       - name: Install Dependencies
         run: npm install
 
       - name: Firebase Deploy
-        run: npm run deploy  # Adjust this based on your specific npm script for deploying to Firebase
+        run: npm run deploy
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
